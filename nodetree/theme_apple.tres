@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://c3x1t42qby2we"]
 
-[ext_resource type="StyleBox" uid="uid://cpfq1knxwgi50" path="res://006_ui/styleboxflat_apple.tres" id="1_tgirb"]
+[ext_resource type="StyleBox" uid="uid://cpfq1knxwgi50" path="res://addons/nodetree/styleboxflat_apple.tres" id="1_tgirb"]
 
 [resource]
 Button/styles/normal = ExtResource("1_tgirb")

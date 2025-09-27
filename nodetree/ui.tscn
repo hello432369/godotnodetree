@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://de8vl1w6gn63a"]
 
 [ext_resource type="Script" uid="uid://kme15ctbyu5h" path="res://addons/nodetree/ui.gd" id="1_21xru"]
-[ext_resource type="Theme" uid="uid://bboyw5b6aouk6" path="res://006_ui/theme_apple.tres" id="2_uljcg"]
+[ext_resource type="Theme" uid="uid://bboyw5b6aouk6" path="res://addons/nodetree/theme_apple.tres" id="2_uljcg"]
 
 [node name="diyui" type="Control"]
 layout_mode = 3

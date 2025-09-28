@@ -48,6 +48,26 @@ func apply_button_styles():
 			# 连接按钮的pressed信号到音效播放函数
 			if not button.is_connected("pressed", _on_plugin_button_pressed):
 				button.pressed.connect(_on_plugin_button_pressed)
+	
+	# 设置所有按钮的图标
+	set_button_icons_by_name()
+
+# 根据按钮名称自动设置图标
+func set_button_icons_by_name():
+	# 遍历所有按钮
+	var buttons = _find_all_buttons(self)
+	for button in buttons:
+		# 跳过顶部三个特定按钮（刷新插件按钮、点击音效按钮、地图导航按钮）
+		if button.name == "刷新" or button.name == "点击音效" or button.name == "链接按钮":
+			# 确保这些按钮没有图标
+			button.icon = null
+			continue
+		
+		# 使用按钮名称作为图标名称
+		var icon_name = button.name
+		var icon = get_theme_icon(icon_name, "EditorIcons")
+		if icon:
+			button.icon = icon
 
 func _on_plugin_button_pressed():
 	# 播放按钮音效
@@ -71,25 +91,24 @@ func _find_all_buttons(node: Node) -> Array:
 
 # region 刷新
 func _on_刷新_pressed() -> void:
-	if is_instance_valid(ed.面板): #如果面板存在
-		ed.remove_control_from_docks(ed.面板) #从右侧移除面板
-		#ed.remove_control_from_bottom_panel(ed.面板) #从底部面板移除面板
-		for child in ed.面板.get_children(): #遍历面板的子节点
-			ed.面板.remove_child(child) #移除子节点
-			child.queue_free() #释放子节点
-		ed.面板.queue_free() #释放面板
-	
-	# 重新创建面板
-	ed.面板 = preload("res://addons/nodetree/ui.tscn").instantiate()
-	ed.面板.ed = ed
-	ed.面板.name = "节点速览"
-	ed.add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, ed.面板)
-	
-	# 重新连接面板中的按钮音效
-	if is_instance_valid(ed) and ed.has_method("_连接编辑器按钮"):
-		ed._连接编辑器按钮()
-	
-	print("插件已刷新")
+	if is_instance_valid(ed) and ed.has_method("_cleanup_dock"):
+		# 使用插件中的清理方法
+		ed._cleanup_dock()
+		
+		# 重新创建面板
+		ed.面板 = preload("res://addons/nodetree/ui.tscn").instantiate()
+		ed.面板.ed = ed
+		ed.面板.name = "节点速览"
+		ed.add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, ed.面板)
+		ed.dock_added = true
+		
+		# 重新连接面板中的按钮音效
+		if is_instance_valid(ed) and ed.has_method("_连接编辑器按钮"):
+			ed._连接编辑器按钮()
+		
+		print("插件已刷新")
+	else:
+		print("错误：无法访问插件的清理方法")
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	# 控制音效开关

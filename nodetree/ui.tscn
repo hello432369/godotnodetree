@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://de8vl1w6gn63a"]
+[gd_scene load_steps=4 format=3 uid="uid://de8vl1w6gn63a"]
 
 [ext_resource type="Script" uid="uid://kme15ctbyu5h" path="res://addons/nodetree/ui.gd" id="1_21xru"]
-[ext_resource type="Theme" uid="uid://bboyw5b6aouk6" path="res://addons/nodetree/theme_apple.tres" id="2_uljcg"]
+[ext_resource type="Theme" uid="uid://bboyw5b6aouk6" path="res://006_ui/theme_apple.tres" id="2_uljcg"]
+
+[sub_resource type="DPITexture" id="DPITexture_uljcg"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
 
 [node name="diyui" type="Control"]
 layout_mode = 3
@@ -26,13 +30,13 @@ layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = " 刷新插件"
 
-[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+[node name="点击音效" type="CheckButton" parent="HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 button_pressed = true
 text = "点击音效"
 
-[node name="LinkButton" type="LinkButton" parent="HBoxContainer"]
+[node name="链接按钮" type="LinkButton" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1.0039686, 0, 1)
 action_mode = 0
@@ -52,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(1, 1, 0, 1)
 theme_override_colors/font_unselected_color = Color(1, 1, 0, 1)
-current_tab = 2
+current_tab = 3
 
 [node name="通用" type="ScrollContainer" parent="TabContainer"]
 visible = false
@@ -87,6 +91,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "播放   AnimationPlayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AnimationTree" type="Button" parent="TabContainer/通用/VBoxContainer2/动画/VBoxContainer"]
@@ -94,6 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "控制   AnimationTree"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -116,6 +122,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "播放   AudioStreamPlayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator5" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -138,6 +145,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "计时    Timer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator6" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -160,6 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "提前_加载   ResourcePreloader"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -182,6 +191,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "着色_全局   ShaderGlobalsOverride"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HTTPRequest" type="Button" parent="TabContainer/通用/VBoxContainer2/特殊/VBoxContainer"]
@@ -189,6 +199,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "网络_请求   HTTPRequest"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MultiplayerSpawner" type="Button" parent="TabContainer/通用/VBoxContainer2/特殊/VBoxContainer"]
@@ -196,6 +207,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "多人_管理   MultiplayerSpawner"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MultiplayerSynchronizer" type="Button" parent="TabContainer/通用/VBoxContainer2/特殊/VBoxContainer"]
@@ -203,6 +215,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "多人_状态   MultiplayerSynchronizer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator7" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -224,12 +237,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "系统_通知   StatusIndicator"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="EditorPlugin" type="Button" parent="TabContainer/通用/VBoxContainer2/其他/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "插件_基础   EditorPlugin"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator8" type="HSeparator" parent="TabContainer/通用/VBoxContainer2"]
@@ -262,6 +277,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "外部_窗口    Window "
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -272,6 +288,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "对话_接受   AcceptDialog"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ConfirmationDialog" type="Button" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -279,6 +296,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "对话_确认   ConfirmationDialog"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="FileDialog" type="Button" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -286,6 +304,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "对话_文件   FileDialog"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -296,6 +315,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "弹窗_基础   Popup"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PopupMenu" type="Button" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -303,6 +323,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "弹窗_菜单   PopupMenu"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PopupPanel" type="Button" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -310,6 +331,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "弹窗_面板   PopupPanel"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer"]
@@ -328,6 +350,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_uljcg")
 text = "内部_窗口   SubViewport"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="UI" type="ScrollContainer" parent="TabContainer"]
@@ -359,12 +382,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "图层   CanvasLayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
-[node name="control" type="Button" parent="TabContainer/UI/VBoxContainer/根节点/VBoxContainer"]
+[node name="Control" type="Button" parent="TabContainer/UI/VBoxContainer/根节点/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "控件   Control"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator7" type="HSeparator" parent="TabContainer/UI/VBoxContainer"]
@@ -400,18 +425,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "基础   Button"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TextureButton" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "纹理   TextureButton"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CheckBox" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "复选   CheckBox"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CheckButton" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2"]
@@ -424,12 +452,14 @@ alignment = 0
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "下拉   OptionButton"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MenuButton" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "菜单   MenuButton"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="LinkButton" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2"]
@@ -442,6 +472,7 @@ alignment = 0
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "取色   ColorPickerButton"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator10" type="HSeparator" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer"]
@@ -467,42 +498,49 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "滑块_左右    HSlider"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VSlider" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "滑块_上下   VSlider"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HScrollBar" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "滚动条_左右   HScrollBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VScrollBar" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "滚动条_上下   VScrollBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ProgressBar" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "进度条_百分比   ProgressBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TextureProgressBar" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "进度条_纹理   TextureProgressBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SpinBox" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "点框_数字   SpinBox"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer"]
@@ -524,18 +562,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "单行   LineEdit"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TextEdit" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "多行   TextEdit"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CodeEdit" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "代码   CodeEdit"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer"]
@@ -557,18 +598,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "文件列表   ItemList"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VideoStreamPlayer" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "视频播放   VideoStreamPlayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Tree" type="Button" parent="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "树形_结构   Tree"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator11" type="HSeparator" parent="TabContainer/UI/VBoxContainer"]
@@ -600,12 +644,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "基础   Label"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RichTextLabel" type="Button" parent="TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "丰富   RichTextLabel"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/UI/VBoxContainer/输出/VBoxContainer"]
@@ -627,18 +673,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "ui纯色背景   ColorRect"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TextureRect" type="Button" parent="TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "ui图片背景   TextureRect"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NinePatchRect" type="Button" parent="TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "ui九宫背景   NinePatchRect"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator5" type="HSeparator" parent="TabContainer/UI/VBoxContainer"]
@@ -673,42 +722,49 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "排列_左右   HBoxContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VBoxContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "排列_上下   VBoxContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HFlowContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "流式_左右   HFlowContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VFlowContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "流式_上下   VFlowContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSplitContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "分隔_左右   HSplitContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VSplitContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "分隔_上下   VSplitContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GridContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "排列_网格   GridContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator10" type="HSeparator" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2"]
@@ -734,6 +790,7 @@ layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "比例   AspectRatioContainer
 "
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator12" type="HSeparator" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer"]
@@ -746,12 +803,14 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "面板   PanelContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SubViewportContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "视窗    SubViewportContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator11" type="HSeparator" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer"]
@@ -764,36 +823,42 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "选项   TabContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ScrollContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/@GridContainer@347191"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "滚动   ScrollContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MarginContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/@GridContainer@347191"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "边距   MarginContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CenterContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/@GridContainer@347191"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "居中   CenterContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="FoldableContainer" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/@GridContainer@347191"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "折叠   FoldableContainer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ColorPicker" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer/VBoxContainer/@GridContainer@347191"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "取色   ColorPicker  "
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator11" type="HSeparator" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2"]
@@ -815,18 +880,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "面板背景   Panel"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MenuBar" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "顶部菜单栏   MenuBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TabBar" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "选项标题栏   TabBar"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator7" type="HSeparator" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2"]
@@ -848,18 +916,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "根   GraphEdit"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GraphFrame" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "组   GraphFrame"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GraphNode" type="Button" parent="TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "点   GraphNode"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/UI/VBoxContainer"]
@@ -879,21 +950,25 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "分割线_上下   HSeparator"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VSeparator" type="Button" parent="TabContainer/UI/VBoxContainer/辅助/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "分割线_左右   VSeparator"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ReferenceRect" type="Button" parent="TabContainer/UI/VBoxContainer/辅助/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "参考框线   ReferenceRect"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="2D" type="ScrollContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -933,12 +1008,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "空   Node"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Node2D" type="Button" parent="TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "2d   Node2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/2D/VBoxContainer/根节点/VBoxContainer"]
@@ -960,18 +1037,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "静态   StaticBody2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RigidBody2D" type="Button" parent="TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "动态   RigidBody2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AnimatableBody2D" type="Button" parent="TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "动画   AnimatableBody2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
@@ -981,6 +1061,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "人物   CharacterBody2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/2D/VBoxContainer"]
@@ -1012,12 +1093,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "单张   Sprite2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AnimatedSprite2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "序列   AnimatedSprite2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer"]
@@ -1039,24 +1122,28 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "形状_单边   Line2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Polygon2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "形状_多边   Polygon2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MeshInstance2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "网格_单重   MeshInstance2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MultiMeshInstance2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "网格_多重   MultiMeshInstance2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer"]
@@ -1078,18 +1165,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "根骨   Skeleton2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Bone2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/@HBoxContainer@938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "子骨   Bone2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PhysicalBone2D" type="Button" parent="TabContainer/2D/VBoxContainer/主体/VBoxContainer/@HBoxContainer@938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "子骨_物理   PhysicalBone2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator13" type="HSeparator" parent="TabContainer/2D/VBoxContainer"]
@@ -1121,18 +1211,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "简形   Area2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ShapeCast2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "杂形   ShapeCast2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RayCast2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "射线   RayCast2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator13" type="HSeparator" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer"]
@@ -1154,12 +1247,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "形状   CollisionShape2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CollisionPolygon2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "多边   CollisionPolygon2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator14" type="HSeparator" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer"]
@@ -1181,24 +1276,28 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "区域   NavigationRegion2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationLink2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "链接   NavigationLink2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationObstacle2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "障碍   NavigationObstacle2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationAgent2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "代理   NavigationAgent2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator15" type="HSeparator" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer"]
@@ -1220,12 +1319,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "绘制    Path2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PathFollow2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "跟随   PathFollow2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator16" type="HSeparator" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer"]
@@ -1247,12 +1348,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "CPU  CPUParticles2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GPUParticles2D" type="Button" parent="TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "GPU   GPUParticles2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/2D/VBoxContainer"]
@@ -1272,12 +1375,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "播放   AudioStreamPlayer2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AudioListener2D" type="Button" parent="TabContainer/2D/VBoxContainer/音频/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "监听   AudioListener2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/2D/VBoxContainer"]
@@ -1309,6 +1414,7 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "相机   Camera2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer"]
@@ -1330,18 +1436,21 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "点光   PointLight2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="DirectionalLight2D" type="Button" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "平光   DirectionalLight2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="LightOccluder2D" type="Button" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "遮光   OccluderLight2D"
+text = "遮光   LightOccluder2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator6" type="HSeparator" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer"]
@@ -1363,6 +1472,7 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "瓦片   TileMapLayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer"]
@@ -1384,12 +1494,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "视差   Parallax2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ParallaxLayer" type="Button" parent="TabContainer/2D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "图层   ParallaxLayer"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator14" type="HSeparator" parent="TabContainer/2D/VBoxContainer"]
@@ -1421,24 +1533,28 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "标记坐标   Marker2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RemoteTransform2D" type="Button" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "远程跟随    RemoteTransform2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="BackBufferCopy" type="Button" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "延迟处理   BackBufferCopy"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="TouchScreenButton" type="Button" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "触控按钮   TouchScreenButton"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer"]
@@ -1460,12 +1576,14 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "组合   CanvasGroup"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CanvasModulate" type="Button" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "调节   CanvasModulate"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer"]
@@ -1487,16 +1605,17 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "区域可控   VisibleOnScreenEnabler2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VisibleOnScreenNotifier2D" type="Button" parent="TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "区域可见   VisibleOnScreenNotifier2D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="3D" type="ScrollContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1535,7 +1654,8 @@ theme_override_constants/separation = 12
 [node name="Node3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "3D Node3D"
+text = "3D节点   Node3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer"]
@@ -1556,19 +1676,22 @@ theme_override_constants/separation = 12
 [node name="StaticBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "静态 Static3D"
+text = "静态体   StaticBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RigidBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "动态 Rigid3D"
+text = "动态体   RigidBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AnimatableBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "动画 Animatable3D"
+text = "动画体   AnimatableBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="_HBoxContainer_686031" type="HBoxContainer" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer"]
@@ -1586,13 +1709,15 @@ theme_override_constants/separation = 12
 [node name="CharacterBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/_HBoxContainer_686031/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "人物 Character3D"
+text = "人物体   CharacterBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VehicleBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/根节点/VBoxContainer/_HBoxContainer_686031/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "汽车 Vehicle3D"
+text = "汽车体   VehicleBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -1623,7 +1748,8 @@ theme_override_constants/separation = 12
 [node name="Label3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "文字 Label3D"
+text = "文字标签   Label3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer"]
@@ -1644,19 +1770,22 @@ theme_override_constants/separation = 12
 [node name="Sprite3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "单张 Sprite3D"
+text = "单张精灵   Sprite3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AnimatedSprite3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "序列 Animated3D"
+text = "序列精灵   AnimatedSprite3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Decal" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
 text = "贴纸 Decal"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer"]
@@ -1677,43 +1806,50 @@ theme_override_constants/separation = 12
 [node name="CSGBox3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "立方体 Box3D"
+text = "立方体   CSGBox3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGCylinder3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "圆柱体 Cylinder3D"
+text = "圆柱体   CSGCylinder3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGSphere3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "球体 Sphere3D"
+text = "球体   CSGSphere3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGTorus3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "圆环体 Torus3D"
+text = "圆环体   CSGTorus3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGMesh3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "网格体 Mesh3D"
+text = "网格体   CSGMesh3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGPolygon3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "多边体 Polygon3D"
+text = "多边体   CSGPolygon3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CSGCombiner3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "组合体 Combiner3D"
+text = "组合体   CSGCombiner3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer"]
@@ -1734,25 +1870,29 @@ theme_override_constants/separation = 12
 [node name="SoftBody3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "软体网格 Soft3D "
+text = "软体网格   SoftBody3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ImporterMeshInstance3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "导入网格 Importer3D"
+text = "导入网格   ImporterMeshInstance3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MeshInstance3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "网格_单重 mesh"
+text = "网格实例   MeshInstance3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="MultiMeshInstance3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "网格_多重 Multi"
+text = "多重网格   MultiMeshInstance3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer"]
@@ -1773,31 +1913,36 @@ theme_override_constants/separation = 12
 [node name="PinJoint3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "固定 Pin3D"
+text = "固定关节   PinJoint3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SliderJoint3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "滑动 Slider3D"
+text = "滑动关节   SliderJoint3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HingeJoint3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "单轴 Hinge3D "
+text = "单轴关节   HingeJoint3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ConeTwistJoint3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "三轴 ConeTwist3D "
+text = "三轴关节   ConeTwistJoint3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Generic6DOFJoint3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "六轴 Generic6DOF3D "
+text = "六轴关节   Generic6DOFJoint3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator5" type="HSeparator" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer"]
@@ -1818,79 +1963,92 @@ theme_override_constants/separation = 12
 [node name="RootMotionView" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "根骨运动 Root"
+text = "根骨运动   RootMotionView"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PhysicalBoneSimulator3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "物理_根 BoneS3D"
+text = "物理根骨骼   PhysicalBoneSimulator3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PhysicalBone3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "物理_子 Bone3D"
+text = "物理子骨骼   PhysicalBone3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="BoneAttachment3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "装备 Attachment3D"
+text = "骨骼装备   BoneAttachment3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="Skeleton3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "人形 Skeleton3D"
+text = "人形骨骼   Skeleton3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CopyTransformModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "影子 Copy3D"
+text = "复制变换   CopyTransformModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="LookAtModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "朝向_头部 LookAt3D"
+text = "朝向头部   LookAtModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AimModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "朝向_手臂 Aim3D "
+text = "朝向手臂   AimModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ModifierBoneTarget3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "朝向_新目标 Target3D "
+text = "朝向新目标   ModifierBoneTarget3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SkeletonIK3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "反向运动 SkeletonIK3D"
+text = "反向运动   SkeletonIK3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SpringBoneSimulator3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "弹簧 Simulator3D "
+text = "弹簧骨骼   SpringBoneSimulator3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RetargetModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "动画重定 Retarget3D"
+text = "动画重定向   RetargetModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ConvertTransformModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "转换器 Conver3D "
+text = "变换转换   ConvertTransformModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator13" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -1921,25 +2079,29 @@ theme_override_constants/separation = 12
 [node name="Area3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "区域 Area3D"
+text = "区域检测   Area3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ShapeCast3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "形状 Shape3d"
+text = "形状投射   ShapeCast3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RayCast3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "射线 Ray3D"
+text = "射线投射   RayCast3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SpringBoneCollision3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "弹簧骨骼 BoneC3D"
+text = "弹簧骨骼碰撞   SpringBoneCollision3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator13" type="HSeparator" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer"]
@@ -1960,19 +2122,22 @@ theme_override_constants/separation = 12
 [node name="CollisionShape3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "形状 shape3d"
+text = "碰撞形状   CollisionShape3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CollisionPolygon3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "多边 Polygon3D"
+text = "碰撞多边形   CollisionPolygon3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VehicleWheel3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "车辆 Wheel3D"
+text = "车辆轮子   VehicleWheel3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator14" type="HSeparator" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer"]
@@ -1993,25 +2158,29 @@ theme_override_constants/separation = 12
 [node name="NavigationRegion3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "区域 Region3D"
+text = "导航区域   NavigationRegion3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationLink3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "链接 Link3D"
+text = "导航链接   NavigationLink3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationObstacle3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "障碍 Obstacle3D"
+text = "导航障碍   NavigationObstacle3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="NavigationAgent3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "代理 Agent3D"
+text = "导航代理   NavigationAgent3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator15" type="HSeparator" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer"]
@@ -2032,13 +2201,15 @@ theme_override_constants/separation = 12
 [node name="Path3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "绘制 Path3D"
+text = "绘制路径   Path3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="PathFollow3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "跟随 flow3D"
+text = "路径跟随   PathFollow3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator16" type="HSeparator" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer"]
@@ -2059,37 +2230,43 @@ theme_override_constants/separation = 12
 [node name="FogVolume" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "迷雾 FogVolume"
+text = "迷雾体积   FogVolume"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="CPUParticles3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "CPU 3D"
+text = "CPU粒子   CPUParticles3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GPUParticles3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "GPU 3D"
+text = "GPU粒子   GPUParticles3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GPUParticlesAttractorBox3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "GPU磁场 Box3D"
+text = "GPU粒子吸引器盒子   GPUParticlesAttractorBox3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GPUParticlesAttractorSphere3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "GPU磁球场 Sphere3D"
+text = "GPU粒子吸引器球体   GPUParticlesAttractorSphere3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="GPUParticlesAttractorVectorField3D" type="Button" parent="TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "GPU向量场 Vector3D"
+text = "GPU粒子吸引器向量场   GPUParticlesAttractorVectorField3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -2108,13 +2285,15 @@ theme_override_constants/separation = 12
 [node name="AudioStreamPlayer3D" type="Button" parent="TabContainer/3D/VBoxContainer/音频/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "播放 Player3D"
+text = "3D音频播放器   AudioStreamPlayer3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="AudioListener3D" type="Button" parent="TabContainer/3D/VBoxContainer/音频/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "监听 Listener3D"
+text = "3D音频监听器   AudioListener3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -2145,13 +2324,15 @@ theme_override_constants/separation = 12
 [node name="Camera3D" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "相机 Camera3D"
+text = "3D相机   Camera3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SpringArm3D" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "相机_机械臂 Arm3D"
+text = "3D相机机械臂   SpringArm3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer"]
@@ -2172,19 +2353,22 @@ theme_override_constants/separation = 12
 [node name="OmniLight3D" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "点光 Omni3D"
+text = "点光源   OmniLight3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="DirectionalLight3D" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "平光 Directional3D"
+text = "平行光源   DirectionalLight3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="SpotLight3D" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "聚光 Spot3D"
+text = "聚光灯源   SpotLight3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator6" type="HSeparator" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer"]
@@ -2205,7 +2389,8 @@ theme_override_constants/separation = 12
 [node name="GridMap" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_1104670/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "瓦片 GridMap"
+text = "网格地图   GridMap"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer"]
@@ -2226,31 +2411,36 @@ theme_override_constants/separation = 12
 [node name="WorldEnvironment" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "天空盒 World"
+text = "世界环境   WorldEnvironment"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="LightmapGI" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "光照全局 LightmapGI"
+text = "光照贴图GI   LightmapGI"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="LightmapProbe" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "光照探针 LightmapProbe"
+text = "光照探针   LightmapProbe"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VoxelGI" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "像素全局 VoxelGI"
+text = "体素GI   VoxelGI"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="ReflectionProbe" type="Button" parent="TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "反射探针 ReflectionProbe"
+text = "反射探针   ReflectionProbe"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator14" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -2281,19 +2471,22 @@ theme_override_constants/separation = 12
 [node name="Marker3D" type="Button" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "标记坐标 Marker3D"
+text = "3D标记   Marker3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="RemoteTransform3D" type="Button" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "远程跟随 Remote3D"
+text = "远程变换3D   RemoteTransform3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OccluderInstance3D" type="Button" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "遮挡剔除 Occluder3D"
+text = "遮挡器实例3D   OccluderInstance3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer"]
@@ -2314,13 +2507,15 @@ theme_override_constants/separation = 12
 [node name="VisibleOnScreenEnabler3D" type="Button" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "区域可控 Enabler3D"
+text = "屏幕可见启用器3D   VisibleOnScreenEnabler3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="VisibleOnScreenNotifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "区域可见 Notifier3D"
+text = "屏幕可见通知器3D   VisibleOnScreenNotifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/3D/VBoxContainer"]
@@ -2351,19 +2546,22 @@ theme_override_constants/separation = 12
 [node name="XRNode3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "根 XRNode3D"
+text = "XR节点3D   XRNode3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="XRCamera3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "相机 XRCamera3D"
+text = "XR相机3D   XRCamera3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="XROrigin3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer4/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "原点 XROrigin3D"
+text = "XR原点3D   XROrigin3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator4" type="HSeparator" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer"]
@@ -2372,7 +2570,7 @@ layout_mode = 2
 [node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer"]
 layout_mode = 2
 
-[node name="OpenXR" type="Label" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3"]
+[node name="开源" type="Label" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "开源"
@@ -2384,37 +2582,43 @@ theme_override_constants/separation = 12
 [node name="OpenXRCompositionLayerEquirect" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "全景层 Equirect"
+text = "矩形合成  OpenXRCompositionLayerEquirect "
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OpenXRCompositionLayerQuad" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "ui层 Quad"
+text = "四边形合成   OpenXRCompositionLayerQuad"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OpenXRHand" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "手部追踪 Hand"
+text = "手部   OpenXRHand"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OpenXRRenderModel" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "渲染模型 Model"
+text = "渲染模型   OpenXRRenderModel"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OpenXRRenderModelManager" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "模型管理 ModelManager"
+text = "模型管理   OpenXRRenderModelManager"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="OpenXRVisibilityMask" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "遮罩 Mask"
+text = "可见遮罩   OpenXRVisibilityMask"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="HSeparator3" type="HSeparator" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer"]
@@ -2435,23 +2639,26 @@ theme_override_constants/separation = 12
 [node name="XRFaceModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "面部 Face3D"
+text = "XR面部修改器3D   XRFaceModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="XRBodyModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "身体 Body3D"
+text = "XR身体修改器3D   XRBodyModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="XRHandModifier3D" type="Button" parent="TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_uljcg")
-text = "手部 hand3D"
+text = "XR手部修改器3D   XRHandModifier3D"
+icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [connection signal="pressed" from="HBoxContainer/刷新" to="." method="_on_刷新_pressed"]
-[connection signal="toggled" from="HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="HBoxContainer/点击音效" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="TabContainer/通用/VBoxContainer2/动画/VBoxContainer/AnimationPlayer" to="." method="_on_animation_player_pressed"]
 [connection signal="pressed" from="TabContainer/通用/VBoxContainer2/动画/VBoxContainer/AnimationTree" to="." method="_on_animation_tree_pressed"]
 [connection signal="pressed" from="TabContainer/通用/VBoxContainer2/音频/VBoxContainer/AudioStreamPlayer" to="." method="_on_audio_stream_player_pressed"]
@@ -2472,7 +2679,7 @@ alignment = 0
 [connection signal="pressed" from="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer/VBoxContainer2/PopupPanel" to="." method="_on_popup_panel_pressed"]
 [connection signal="pressed" from="TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer2/SubViewport" to="." method="_on_sub_viewport_pressed"]
 [connection signal="pressed" from="TabContainer/UI/VBoxContainer/根节点/VBoxContainer/CanvasLayer" to="." method="_on_canvas_layer_pressed"]
-[connection signal="pressed" from="TabContainer/UI/VBoxContainer/根节点/VBoxContainer/control" to="." method="_on_control_pressed"]
+[connection signal="pressed" from="TabContainer/UI/VBoxContainer/根节点/VBoxContainer/Control" to="." method="_on_control_pressed"]
 [connection signal="pressed" from="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer/VBoxContainer/GridContainer2/CheckBox" to="." method="_on_check_box_pressed"]

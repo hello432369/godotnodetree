@@ -2,6 +2,7 @@
 extends EditorPlugin
 
 var 面板 = preload("res://addons/nodetree/ui.tscn").instantiate()
+var dock_added = false  # 添加标志来跟踪dock状态
 
 # region 音效
 var 音效播放器 := AudioStreamPlayer.new()
@@ -12,19 +13,85 @@ var 音效启用 := true  # 添加音效开关变量，默认启用
 # endregion
 
 func _enter_tree():
+	# 确保面板是新的实例
+	if not is_instance_valid(面板):
+		面板 = preload("res://addons/nodetree/ui.tscn").instantiate()
+	
 	面板.ed = self
 	面板.name = "节点速览"
-	add_control_to_dock(DOCK_SLOT_RIGHT_UL, 面板)
+	
+	# 尝试添加dock，如果失败则先移除可能存在的残留dock
+	_try_add_dock()
 
 	# region 音效
 	_初始化音效播放器()
 	# endregion
+
+# 尝试添加dock到编辑器
+func _try_add_dock() -> bool:
+	if dock_added:
+		return true
 	
-func _exit_tree():
+	# 先检查是否已经存在同名dock
+	var base_control = get_editor_interface().get_base_control()
+	if base_control:
+		var existing_docks = []
+		_find_docks_by_name(base_control, "节点速览", existing_docks)
+		if existing_docks.size() > 0:
+			# 如果已存在dock，先清理
+			_cleanup_dock()
+	
+	# 尝试添加dock
+	add_control_to_dock(DOCK_SLOT_RIGHT_UL, 面板)
+	dock_added = true
+	return true
+
+# 清理可能的残留dock
+func _cleanup_dock():
+	# 尝试通过名称查找并移除dock
+	var base_control = get_editor_interface().get_base_control()
+	if base_control:
+		# 查找所有可能的dock容器
+		var docks = []
+		_find_docks_by_name(base_control, "节点速览", docks)
+		
+		for dock in docks:
+			if dock.get_parent():
+				dock.get_parent().remove_child(dock)
+				dock.queue_free()
+	
+	# 确保我们的面板被清理
 	if is_instance_valid(面板):
 		remove_control_from_docks(面板)
-		if is_instance_valid(面板.ed):
-			面板.ed = null
+		if 面板.get_parent():
+			面板.get_parent().remove_child(面板)
+		面板.queue_free()
+		面板 = null
+	
+	dock_added = false
+
+# 递归查找指定名称的dock
+func _find_docks_by_name(node: Node, name: String, result: Array):
+	if node.name == name:
+		result.append(node)
+	
+	for child in node.get_children():
+		_find_docks_by_name(child, name, result)
+
+func _exit_tree():
+	# 确保dock被正确移除
+	if dock_added:
+		_cleanup_dock()
+	else:
+		# 即使标志为false，也尝试清理
+		if is_instance_valid(面板):
+			remove_control_from_docks(面板)
+			if is_instance_valid(面板.ed):
+				面板.ed = null
+			if 面板.get_parent():
+				面板.get_parent().remove_child(面板)
+			面板.queue_free()
+			面板 = null
 
 	# region 音效
 	_清理连接()

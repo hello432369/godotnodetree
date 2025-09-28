@@ -12,6 +12,10 @@ var 初始化完成 := false
 var 音效启用 := true  # 添加音效开关变量，默认启用
 # endregion
 
+# region 字体大小设置
+const FONT_SIZE_CONFIG_PATH = "res://addons/nodetree/nodetree_font_size.cfg"
+# endregion
+
 func _enter_tree():
 	# 确保面板是新的实例
 	if not is_instance_valid(面板):
@@ -26,6 +30,12 @@ func _enter_tree():
 	# region 音效
 	_初始化音效播放器()
 	# endregion
+	
+	# 确保字体大小设置和音效开关状态被加载
+	if is_instance_valid(面板):
+		面板.load_font_size()
+		面板.load_sound_enabled()
+		面板.apply_font_size_to_buttons()
 
 # 尝试添加dock到编辑器
 func _try_add_dock() -> bool:
@@ -170,6 +180,9 @@ func _连接编辑器按钮():
 			var 音效按钮 = 面板.find_child("点击音效", true, false)
 			if 音效按钮 and 音效按钮 is CheckButton:
 				音效按钮.button_pressed = 音效启用
+				# 确保面板中的音效状态与插件中的音效状态一致
+				if 面板.has_method("load_sound_enabled"):
+					面板.load_sound_enabled()
 
 		# 标记初始化完成，此时开始允许播放音效
 		# 延迟一小段时间再激活音效，以避免编辑器启动时因UI状态恢复而自动触发
@@ -342,6 +355,11 @@ func 设置音效开关(启用: bool):
 	# 如果启用音效，则随机选择一个新的音效文件
 	if 音效启用 and is_instance_valid(音效播放器):
 		_随机切换音效()
+	
+	# 更新面板中的音效状态变量
+	if is_instance_valid(面板) and 面板.has_method("save_sound_enabled"):
+		面板.sound_enabled = 启用
+		面板.save_sound_enabled()
 
 # 获取音效开关状态的公共函数
 func 获取音效开关状态() -> bool:
@@ -361,6 +379,16 @@ func _随机切换音效():
 		print("已切换到音效文件: " + str(随机数))
 	else:
 		push_warning("无法加载音效文件: %s" % str(随机数))
+# endregion
+
+# region 字体大小设置
+# 获取字体大小设置
+func 获取字体大小设置() -> int:
+	var config = ConfigFile.new()
+	if config.load(FONT_SIZE_CONFIG_PATH) == OK:
+		return config.get_value("settings", "font_size", 8)
+	else:
+		return 8  # 默认值
 # endregion
 
 # ----------------------------------------------------音效结束

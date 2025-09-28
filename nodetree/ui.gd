@@ -6,6 +6,11 @@ extends Control
 
 var ed: EditorPlugin = null
 
+# 字体大小设置
+var font_size: int = 8
+var sound_enabled: bool = true  # 添加音效开关变量
+const FONT_SIZE_CONFIG_PATH = "res://addons/nodetree/nodetree_font_size.cfg"
+
 func _ready():
 	# 应用按钮样式
 	apply_button_styles()
@@ -13,9 +18,25 @@ func _ready():
 	# 设置所有VBoxContainer的间距为12
 	set_vboxcontainer_spacing(12)
 	
+	# 加载保存的字体大小设置
+	load_font_size()
+	
+	# 加载保存的音效开关状态
+	load_sound_enabled()
+	
+	# 应用字体大小到所有按钮
+	apply_font_size_to_buttons()
+	
 	# 连接面板中的按钮音效
 	if is_instance_valid(ed) and ed.has_method("_连接编辑器按钮"):
 		ed._连接编辑器按钮()
+	
+	# 连接字体大小滑块信号
+	var font_slider = find_child("HSlider", true, false)
+	if font_slider and font_slider is HSlider:
+		font_slider.value = font_size
+		if not font_slider.is_connected("value_changed", _on_font_size_changed):
+			font_slider.value_changed.connect(_on_font_size_changed)
 
 func set_vboxcontainer_spacing(spacing: int) -> void:
 	# 遍历所有VBoxContainer节点
@@ -51,6 +72,9 @@ func apply_button_styles():
 	
 	# 设置所有按钮的图标
 	set_button_icons_by_name()
+	
+	# 应用字体大小到所有按钮
+	apply_font_size_to_buttons()
 
 # 根据按钮名称自动设置图标
 func set_button_icons_by_name():
@@ -89,12 +113,77 @@ func _find_all_buttons(node: Node) -> Array:
 # endregion
 
 
+# region 字体大小管理
+# 保存字体大小设置
+func save_font_size():
+	var config = ConfigFile.new()
+	config.set_value("settings", "font_size", font_size)
+	config.set_value("settings", "sound_enabled", sound_enabled)
+	var err = config.save(FONT_SIZE_CONFIG_PATH)
+	if err != OK:
+		print("保存字体大小设置失败: ", err)
+
+# 加载字体大小设置
+func load_font_size():
+	var config = ConfigFile.new()
+	if config.load(FONT_SIZE_CONFIG_PATH) == OK:
+		font_size = config.get_value("settings", "font_size", 8)
+		sound_enabled = config.get_value("settings", "sound_enabled", true)
+	else:
+		font_size = 8  # 默认值
+		sound_enabled = true  # 默认值
+
+# 应用字体大小到所有按钮
+func apply_font_size_to_buttons():
+	var buttons = _find_all_buttons(self)
+	for button in buttons:
+		# 跳过顶部三个特定按钮（刷新插件按钮、点击音效按钮、地图导航按钮）
+		if button.name == "刷新" or button.name == "点击音效" or button.name == "链接按钮":
+			continue
+			
+		if button.has_method("add_theme_font_size_override"):
+			button.add_theme_font_size_override("font_size", font_size)
+			# 强制更新按钮的样式
+			button.queue_redraw()
+
+# 字体大小滑块值变化时的回调
+func _on_font_size_changed(value: float):
+	font_size = int(value)
+	apply_font_size_to_buttons()
+	save_font_size()
+
+# 保存音效开关状态
+func save_sound_enabled():
+	var config = ConfigFile.new()
+	config.set_value("settings", "font_size", font_size)
+	config.set_value("settings", "sound_enabled", sound_enabled)
+	var err = config.save(FONT_SIZE_CONFIG_PATH)
+	if err != OK:
+		print("保存音效开关状态失败: ", err)
+
+# 加载音效开关状态
+func load_sound_enabled():
+	var config = ConfigFile.new()
+	if config.load(FONT_SIZE_CONFIG_PATH) == OK:
+		sound_enabled = config.get_value("settings", "sound_enabled", true)
+	else:
+		sound_enabled = true  # 默认值
+	
+	# 更新音效按钮状态
+	var sound_button = find_child("点击音效", true, false)
+	if sound_button and sound_button is CheckButton:
+		sound_button.button_pressed = sound_enabled
+	
+	# 更新插件中的音效状态
+	if is_instance_valid(ed) and ed.has_method("设置音效开关"):
+		ed.设置音效开关(sound_enabled)
+# endregion
+
+
 # region 刷新
 func _on_刷新_pressed() -> void:
-	# 保存当前音效开关状态
-	var 音效状态 = false
-	if is_instance_valid(ed) and ed.has_method("获取音效开关状态"):
-		音效状态 = ed.获取音效开关状态()
+	# 保存当前字体大小设置
+	save_font_size()
 	
 	if is_instance_valid(ed) and ed.has_method("_cleanup_dock"):
 		# 使用插件中的清理方法
@@ -107,13 +196,13 @@ func _on_刷新_pressed() -> void:
 		ed.add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, ed.面板)
 		ed.dock_added = true
 		
-		# 恢复音效开关状态
-		if is_instance_valid(ed) and ed.has_method("设置音效开关"):
-			ed.设置音效开关(音效状态)
-			# 更新UI中按钮的状态
-			var 音效按钮 = ed.面板.find_child("点击音效", true, false)
-			if 音效按钮 and 音效按钮 is CheckButton:
-				音效按钮.button_pressed = 音效状态
+		# 恢复字体大小设置（从保存的配置中加载）
+		ed.面板.load_font_size()
+		ed.面板.load_sound_enabled()  # 加载音效开关状态
+		ed.面板.apply_font_size_to_buttons()
+		var font_slider = ed.面板.find_child("HSlider", true, false)
+		if font_slider and font_slider is HSlider:
+			font_slider.value = ed.面板.font_size
 		
 		# 重新连接面板中的按钮音效
 		if is_instance_valid(ed) and ed.has_method("_连接编辑器按钮"):
@@ -128,6 +217,12 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	if is_instance_valid(ed) and ed.has_method("设置音效开关"):
 		ed.设置音效开关(toggled_on)
 		print("音效已", "启用" if toggled_on else "禁用")
+		
+		# 更新本地音效状态变量
+		sound_enabled = toggled_on
+		
+		# 保存音效开关状态
+		save_sound_enabled()
 		
 		# 确保按钮状态与音效状态一致
 		var 音效按钮 = find_child("点击音效", true, false)

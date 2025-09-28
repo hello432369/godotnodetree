@@ -91,6 +91,11 @@ func _find_all_buttons(node: Node) -> Array:
 
 # region 刷新
 func _on_刷新_pressed() -> void:
+	# 保存当前音效开关状态
+	var 音效状态 = false
+	if is_instance_valid(ed) and ed.has_method("获取音效开关状态"):
+		音效状态 = ed.获取音效开关状态()
+	
 	if is_instance_valid(ed) and ed.has_method("_cleanup_dock"):
 		# 使用插件中的清理方法
 		ed._cleanup_dock()
@@ -101,6 +106,14 @@ func _on_刷新_pressed() -> void:
 		ed.面板.name = "节点速览"
 		ed.add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, ed.面板)
 		ed.dock_added = true
+		
+		# 恢复音效开关状态
+		if is_instance_valid(ed) and ed.has_method("设置音效开关"):
+			ed.设置音效开关(音效状态)
+			# 更新UI中按钮的状态
+			var 音效按钮 = ed.面板.find_child("点击音效", true, false)
+			if 音效按钮 and 音效按钮 is CheckButton:
+				音效按钮.button_pressed = 音效状态
 		
 		# 重新连接面板中的按钮音效
 		if is_instance_valid(ed) and ed.has_method("_连接编辑器按钮"):
@@ -115,6 +128,11 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 	if is_instance_valid(ed) and ed.has_method("设置音效开关"):
 		ed.设置音效开关(toggled_on)
 		print("音效已", "启用" if toggled_on else "禁用")
+		
+		# 确保按钮状态与音效状态一致
+		var 音效按钮 = find_child("点击音效", true, false)
+		if 音效按钮 and 音效按钮 is CheckButton:
+			音效按钮.button_pressed = toggled_on
 		
 
 

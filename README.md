@@ -33,7 +33,7 @@ NodeTree is a Godot 4 plugin that provides a quick overview of nodes in your sce
 
 ## Usage
 
-After enabling the plugin, you can access the NodeTree panel from the bottom panel of the Godot editor.
+After enabling the plugin, you can access the NodeTree panel from the right panel of the Godot editor.
 
 ## License
 
@@ -63,7 +63,7 @@ Created by 能吃两个西瓜
 
 ## 使用
 
-启用插件后，您可以从 Godot 编辑器的底部面板访问节点速览面板。
+启用插件后，您可以从 Godot 编辑器的右侧面板访问节点速览面板。
 
 ## 许可证
 

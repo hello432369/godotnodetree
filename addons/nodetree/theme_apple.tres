@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c3x1t42qby2we"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c3x1t42qby2we"]
 
 [ext_resource type="StyleBox" uid="uid://cpfq1knxwgi50" path="res://addons/nodetree/styleboxflat_apple.tres" id="1_tgirb"]
+[ext_resource type="FontFile" uid="uid://dfc72ayow8r8m" path="res://addons/nodetree/fusion_myminifont.ttf" id="2_62cd4"]
 
 [resource]
-Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_color = Color(0.52906674, 0.5290667, 0.5290667, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
@@ -21,5 +22,11 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 12
-Button/fonts/font = null
+Button/fonts/font = ExtResource("2_62cd4")
 Button/styles/normal = ExtResource("1_tgirb")
+FoldableContainer/colors/font_color = Color(0, 0.43529412, 1, 1)
+FoldableContainer/font_sizes/font_size = 16
+FoldableContainer/fonts/font = ExtResource("2_62cd4")
+Label/colors/font_color = Color(0.03137255, 0.69803923, 0, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("2_62cd4")

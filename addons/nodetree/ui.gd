@@ -9,6 +9,7 @@ var ed: EditorPlugin = null
 # 字体大小设置
 var font_size: int = 8
 var sound_enabled: bool = true  # 添加音效开关变量
+var fold_states: Dictionary = {}  # 保存折叠状态的字典
 const FONT_SIZE_CONFIG_PATH = "res://addons/nodetree/nodetree_font_size.cfg"
 
 func _ready():
@@ -24,6 +25,9 @@ func _ready():
 	# 加载保存的音效开关状态
 	load_sound_enabled()
 	
+	# 加载保存的折叠状态
+	load_fold_states()
+	
 	# 应用字体大小到所有按钮
 	apply_font_size_to_buttons()
 	
@@ -37,6 +41,9 @@ func _ready():
 		font_slider.value = font_size
 		if not font_slider.is_connected("value_changed", _on_font_size_changed):
 			font_slider.value_changed.connect(_on_font_size_changed)
+	
+	# 连接所有FoldableContainer的折叠信号
+	connect_foldable_containers()
 
 func set_vboxcontainer_spacing(spacing: int) -> void:
 	# 遍历所有VBoxContainer节点
@@ -119,6 +126,9 @@ func save_font_size():
 	var config = ConfigFile.new()
 	config.set_value("settings", "font_size", font_size)
 	config.set_value("settings", "sound_enabled", sound_enabled)
+	# 保存所有折叠状态
+	for container_name in fold_states:
+		config.set_value("fold_states", container_name, fold_states[container_name])
 	var err = config.save(FONT_SIZE_CONFIG_PATH)
 	if err != OK:
 		print("保存字体大小设置失败: ", err)
@@ -157,9 +167,89 @@ func save_sound_enabled():
 	var config = ConfigFile.new()
 	config.set_value("settings", "font_size", font_size)
 	config.set_value("settings", "sound_enabled", sound_enabled)
+	# 保存所有折叠状态
+	for container_name in fold_states:
+		config.set_value("fold_states", container_name, fold_states[container_name])
 	var err = config.save(FONT_SIZE_CONFIG_PATH)
 	if err != OK:
 		print("保存音效开关状态失败: ", err)
+
+# 加载折叠状态
+func load_fold_states():
+	var config = ConfigFile.new()
+	if config.load(FONT_SIZE_CONFIG_PATH) == OK:
+		# 加载所有折叠状态
+		var sections = config.get_sections()
+		if "fold_states" in sections:
+			var container_names = config.get_section_keys("fold_states")
+			for container_name in container_names:
+				fold_states[container_name] = config.get_value("fold_states", container_name, false)
+		else:
+			# 默认所有折叠容器都是展开状态
+			fold_states = {}
+	else:
+		# 默认所有折叠容器都是展开状态
+		fold_states = {}
+
+# 连接所有FoldableContainer的折叠信号
+func connect_foldable_containers():
+	# 递归查找所有FoldableContainer
+	var foldable_containers = _find_all_foldable_containers(self)
+	for container in foldable_containers:
+		# 为每个容器生成唯一标识符
+		var container_id = _get_container_unique_id(container)
+		
+		# 如果之前保存过状态，则应用
+		if container_id in fold_states:
+			container.folded = fold_states[container_id]
+		else:
+			# 默认状态保存到字典
+			fold_states[container_id] = container.folded
+		
+		# 连接信号，如果尚未连接
+		if not container.is_connected("folded_changed", _on_foldable_container_folded):
+			container.folded_changed.connect(_on_foldable_container_folded.bind(container))
+
+# 查找所有FoldableContainer
+func _find_all_foldable_containers(node: Node) -> Array:
+	var containers = []
+	
+	# 如果是FoldableContainer，添加到数组
+	if node is FoldableContainer:
+		containers.append(node)
+	
+	# 递归查找子节点
+	for child in node.get_children():
+		containers.append_array(_find_all_foldable_containers(child))
+	
+	return containers
+
+# 获取容器的唯一标识符
+func _get_container_unique_id(container: FoldableContainer) -> String:
+	# 使用容器路径作为唯一标识符
+	return container.get_path()
+
+# FoldableContainer折叠状态变化时的回调
+func _on_foldable_container_folded(folded: bool, container: FoldableContainer):
+	var container_id = _get_container_unique_id(container)
+	fold_states[container_id] = folded
+	# 保存折叠状态
+	save_fold_states()
+
+# 单独保存折叠状态
+func save_fold_states():
+	var config = ConfigFile.new()
+	# 保留原有的字体大小和音效设置
+	if FileAccess.file_exists(FONT_SIZE_CONFIG_PATH):
+		config.load(FONT_SIZE_CONFIG_PATH)
+	
+	# 保存所有折叠状态
+	for container_name in fold_states:
+		config.set_value("fold_states", container_name, fold_states[container_name])
+	
+	var err = config.save(FONT_SIZE_CONFIG_PATH)
+	if err != OK:
+		print("保存折叠状态失败: ", err)
 
 # 加载音效开关状态
 func load_sound_enabled():
@@ -199,6 +289,7 @@ func _on_刷新_pressed() -> void:
 		# 恢复字体大小设置（从保存的配置中加载）
 		ed.面板.load_font_size()
 		ed.面板.load_sound_enabled()  # 加载音效开关状态
+		ed.面板.load_fold_states()  # 加载折叠状态
 		ed.面板.apply_font_size_to_buttons()
 		var font_slider = ed.面板.find_child("HSlider", true, false)
 		if font_slider and font_slider is HSlider:

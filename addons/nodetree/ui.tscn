@@ -43,16 +43,21 @@ theme_override_constants/separation = 15
 [node name="刷新" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_e6tgo")
+theme_override_font_sizes/font_size = 16
 text = " 刷新插件"
 
 [node name="点击音效" type="CheckButton" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_e6tgo")
+theme_override_colors/font_pressed_color = Color(0.59717613, 0.59717613, 0.5971761, 1)
+theme_override_font_sizes/font_size = 16
+button_pressed = true
 text = "点击音效"
+alignment = 1
 
 [node name="链接按钮" type="LinkButton" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1.0039686, 0, 1)
+theme_override_colors/font_color = Color(3.642741e-06, 0.6320789, 0, 1)
+theme_override_font_sizes/font_size = 16
 action_mode = 0
 text = "地图导航"
 uri = "https://xk3gvpbkxh.feishu.cn/wiki/Ob5WwTrmlihPbqkufilckXDUnye?from=from_copylink"
@@ -62,12 +67,16 @@ layout_mode = 2
 
 [node name="字体大小" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/@HBoxContainer@42013"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5810326, 0.581033, 0.5810329, 1)
+theme_override_font_sizes/font_size = 16
 text = "字体大小"
+horizontal_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer/@HBoxContainer@42013"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 50)
 layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 0
 min_value = 15.0
 max_value = 25.0
 value = 21.0
@@ -76,16 +85,14 @@ ticks_position = 3
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_e6tgo")
-theme_override_colors/font_selected_color = Color(1, 1, 0, 1)
-theme_override_colors/font_unselected_color = Color(1, 1, 0, 1)
-current_tab = 2
+theme_override_colors/font_unselected_color = Color(0.9615182, 5.0537287e-06, 1.732707e-06, 1)
+current_tab = 0
 
 [node name="通用" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_e6tgo")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 metadata/_tab_index = 0
@@ -98,12 +105,13 @@ theme_override_constants/separation = 12
 
 [node name="动画" type="HBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 12
 
 [node name="动画" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/动画"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme = ExtResource("3_e6tgo")
 text = "动画"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/动画"]
 layout_mode = 2
@@ -135,7 +143,6 @@ layout_mode = 2
 
 [node name="音频" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/音频"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "音频"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/音频"]
@@ -159,7 +166,6 @@ layout_mode = 2
 
 [node name="计时" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/计时器"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "计时"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/计时器"]
@@ -183,7 +189,6 @@ layout_mode = 2
 
 [node name="预载" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/预加载"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "预载"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/预加载"]
@@ -207,7 +212,6 @@ layout_mode = 2
 
 [node name="特殊" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/特殊"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "特殊"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/特殊"]
@@ -258,7 +262,6 @@ layout_mode = 2
 
 [node name="其他" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/其他"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "其他"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/其他"]
@@ -287,7 +290,6 @@ layout_mode = 2
 [node name="窗口" type="FoldableContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("3_e6tgo")
-theme_override_colors/font_color = Color(0.12963545, 0.99437004, 1, 1)
 title = "窗口"
 title_alignment = 1
 
@@ -300,7 +302,6 @@ layout_mode = 2
 
 [node name="窗外 07" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "外部"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer"]
@@ -384,7 +385,6 @@ layout_mode = 2
 
 [node name="渲染内" type="Label" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "内部"
 
 [node name="SubViewport" type="Button" parent="VBoxContainer/TabContainer/通用/VBoxContainer2/窗口/VBoxContainer/HBoxContainer2"]
@@ -413,7 +413,7 @@ theme_override_constants/separation = 12
 
 [node name="根节点" type="FoldableContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "根节点"
 title_alignment = 1
 
@@ -442,7 +442,7 @@ layout_mode = 2
 
 [node name="输入" type="FoldableContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.93333334, 0.8745098, 1)
+theme = ExtResource("3_e6tgo")
 title = "输入"
 title_alignment = 1
 
@@ -455,7 +455,6 @@ layout_mode = 2
 
 [node name="布尔" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "布尔"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer"]
@@ -538,7 +537,6 @@ layout_mode = 2
 
 [node name="数字" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "数字"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer4"]
@@ -613,7 +611,6 @@ layout_mode = 2
 
 [node name="字符" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "字符"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer2"]
@@ -652,7 +649,6 @@ layout_mode = 2
 
 [node name="文件" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "文件"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输入/VBoxContainer/HBoxContainer3"]
@@ -688,7 +684,7 @@ layout_mode = 2
 
 [node name="输出" type="FoldableContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.8509804, 1)
+theme = ExtResource("3_e6tgo")
 title = "输出"
 title_alignment = 1
 
@@ -701,7 +697,6 @@ layout_mode = 2
 
 [node name="文本" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "文本"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer"]
@@ -732,7 +727,6 @@ layout_mode = 2
 
 [node name="图形" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "图形"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/输出/VBoxContainer/HBoxContainer2"]
@@ -768,7 +762,7 @@ layout_mode = 2
 
 [node name="容器" type="FoldableContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9764706, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "容器"
 title_alignment = 1
 
@@ -781,7 +775,6 @@ layout_mode = 2
 
 [node name="分列" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "分列"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer6"]
@@ -855,7 +848,6 @@ layout_mode = 2
 
 [node name="分区" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "分区"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer"]
@@ -958,7 +950,6 @@ layout_mode = 2
 
 [node name="独立" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "独立"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer2"]
@@ -997,7 +988,6 @@ layout_mode = 2
 
 [node name="可视化" type="Label" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer5"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "可视化"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer/容器/VBoxContainer2/HBoxContainer5"]
@@ -1033,7 +1023,7 @@ layout_mode = 2
 
 [node name="辅助" type="FoldableContainer" parent="VBoxContainer/TabContainer/UI/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9882353, 1)
+theme = ExtResource("3_e6tgo")
 title = "辅助"
 title_alignment = 1
 
@@ -1066,6 +1056,7 @@ icon = SubResource("DPITexture_uljcg")
 alignment = 0
 
 [node name="2D" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1081,7 +1072,7 @@ theme_override_constants/separation = 12
 
 [node name="根节点" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9764706, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "根节点"
 title_alignment = 1
 
@@ -1094,7 +1085,6 @@ layout_mode = 2
 
 [node name="节点" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "节点"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer"]
@@ -1125,7 +1115,6 @@ layout_mode = 2
 
 [node name="刚体" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "刚体"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2"]
@@ -1172,7 +1161,7 @@ layout_mode = 2
 
 [node name="主体" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9764706, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "主体"
 title_alignment = 1
 
@@ -1185,7 +1174,6 @@ layout_mode = 2
 
 [node name="图片" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "图片"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer"]
@@ -1216,7 +1204,6 @@ layout_mode = 2
 
 [node name="图形" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "图形"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/HBoxContainer2"]
@@ -1263,7 +1250,6 @@ layout_mode = 2
 
 [node name="骨骼" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/@HBoxContainer@938943"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "骨骼"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/主体/VBoxContainer/@HBoxContainer@938943"]
@@ -1299,7 +1285,7 @@ layout_mode = 2
 
 [node name="物理" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9647059, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "物理"
 title_alignment = 1
 
@@ -1312,7 +1298,6 @@ layout_mode = 2
 
 [node name="检测" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "检测"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer"]
@@ -1351,7 +1336,6 @@ layout_mode = 2
 
 [node name="碰撞" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "碰撞"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer2"]
@@ -1382,7 +1366,6 @@ layout_mode = 2
 
 [node name="导航" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "导航"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer3"]
@@ -1429,7 +1412,6 @@ layout_mode = 2
 
 [node name="路径" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "路径"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer4"]
@@ -1460,7 +1442,6 @@ layout_mode = 2
 
 [node name="粒子" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "粒子"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/物理/VBoxContainer/HBoxContainer5"]
@@ -1488,7 +1469,7 @@ layout_mode = 2
 
 [node name="音频" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9529412, 1)
+theme = ExtResource("3_e6tgo")
 title = "音频"
 title_alignment = 1
 
@@ -1517,7 +1498,7 @@ layout_mode = 2
 
 [node name="背景" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1.92523e-07, 0.99933714, 0.98407215, 1)
+theme = ExtResource("3_e6tgo")
 title = "背景"
 title_alignment = 1
 
@@ -1530,7 +1511,6 @@ layout_mode = 2
 
 [node name="相机" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/@HBoxContainer@848779"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "相机"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/@HBoxContainer@848779"]
@@ -1553,7 +1533,6 @@ layout_mode = 2
 
 [node name="光照" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "光照"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/HBoxContainer"]
@@ -1592,7 +1571,6 @@ layout_mode = 2
 
 [node name="地形" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "地形"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779"]
@@ -1615,7 +1593,6 @@ layout_mode = 2
 
 [node name="视差" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "视差"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780"]
@@ -1643,7 +1620,7 @@ layout_mode = 2
 
 [node name="辅助" type="FoldableContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9529412, 1)
+theme = ExtResource("3_e6tgo")
 title = "辅助"
 title_alignment = 1
 
@@ -1656,7 +1633,6 @@ layout_mode = 2
 
 [node name="其他" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "其他"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3"]
@@ -1703,7 +1679,6 @@ layout_mode = 2
 
 [node name="图层" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "图层"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer2"]
@@ -1734,7 +1709,6 @@ layout_mode = 2
 
 [node name="检测" type="Label" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "检测"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/2D/VBoxContainer/辅助/VBoxContainer/HBoxContainer"]
@@ -1774,7 +1748,7 @@ theme_override_constants/separation = 12
 
 [node name="根节点" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9764706, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "根节点"
 title_alignment = 1
 
@@ -1787,7 +1761,6 @@ layout_mode = 2
 
 [node name="节点" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "节点"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer"]
@@ -1810,7 +1783,6 @@ layout_mode = 2
 
 [node name="刚体" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "刚体"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/HBoxContainer2"]
@@ -1846,7 +1818,6 @@ layout_mode = 2
 
 [node name="特殊" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/_HBoxContainer_686031"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "特殊"
 
 [node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/根节点/VBoxContainer/_HBoxContainer_686031"]
@@ -1874,7 +1845,7 @@ layout_mode = 2
 
 [node name="主体" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9764706, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "主体"
 title_alignment = 1
 
@@ -1887,7 +1858,6 @@ layout_mode = 2
 
 [node name="文字" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "文字"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer4"]
@@ -1910,7 +1880,6 @@ layout_mode = 2
 
 [node name="图片" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "图片"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer"]
@@ -1949,7 +1918,6 @@ layout_mode = 2
 
 [node name="几何" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "几何"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer3"]
@@ -2020,7 +1988,6 @@ layout_mode = 2
 
 [node name="网格" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "网格"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/HBoxContainer2"]
@@ -2067,7 +2034,6 @@ layout_mode = 2
 
 [node name="关节" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "关节"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938944"]
@@ -2122,7 +2088,6 @@ layout_mode = 2
 
 [node name="骨骼" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "骨骼"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/主体/VBoxContainer/_HBoxContainer_938943"]
@@ -2238,7 +2203,7 @@ layout_mode = 2
 
 [node name="物理" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.9647059, 1, 1)
+theme = ExtResource("3_e6tgo")
 title = "物理"
 title_alignment = 1
 
@@ -2251,7 +2216,6 @@ layout_mode = 2
 
 [node name="检测" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "检测"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer"]
@@ -2298,7 +2262,6 @@ layout_mode = 2
 
 [node name="碰撞" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "碰撞"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer2"]
@@ -2337,7 +2300,6 @@ layout_mode = 2
 
 [node name="导航" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "导航"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer3"]
@@ -2384,7 +2346,6 @@ layout_mode = 2
 
 [node name="路径" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "路径"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer4"]
@@ -2415,7 +2376,6 @@ layout_mode = 2
 
 [node name="粒子" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "粒子"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/物理/VBoxContainer/HBoxContainer5"]
@@ -2475,7 +2435,7 @@ layout_mode = 2
 
 [node name="音频" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9529412, 1)
+theme = ExtResource("3_e6tgo")
 title = "音频"
 title_alignment = 1
 
@@ -2504,7 +2464,7 @@ layout_mode = 2
 
 [node name="背景" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1.92523e-07, 0.99933714, 0.98407215, 1)
+theme = ExtResource("3_e6tgo")
 title = "背景"
 title_alignment = 1
 
@@ -2517,7 +2477,6 @@ layout_mode = 2
 
 [node name="相机" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "相机"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848779"]
@@ -2548,7 +2507,6 @@ layout_mode = 2
 
 [node name="光照" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "光照"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/HBoxContainer"]
@@ -2587,7 +2545,6 @@ layout_mode = 2
 
 [node name="地形" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_1104670"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "地形"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_1104670"]
@@ -2610,7 +2567,6 @@ layout_mode = 2
 
 [node name="氛围" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "氛围"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/背景/VBoxContainer/_HBoxContainer_848780"]
@@ -2662,7 +2618,7 @@ layout_mode = 2
 
 [node name="辅助" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9529412, 1)
+theme = ExtResource("3_e6tgo")
 title = "辅助"
 title_alignment = 1
 
@@ -2675,7 +2631,6 @@ layout_mode = 2
 
 [node name="其他" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "其他"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer3"]
@@ -2714,7 +2669,6 @@ layout_mode = 2
 
 [node name="检测" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "检测"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/辅助/VBoxContainer/HBoxContainer"]
@@ -2742,7 +2696,7 @@ layout_mode = 2
 
 [node name="XR" type="FoldableContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.9529412, 1)
+theme = ExtResource("3_e6tgo")
 title = "XR"
 title_alignment = 1
 
@@ -2755,7 +2709,6 @@ layout_mode = 2
 
 [node name="根节点" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "树根"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer4"]
@@ -2794,7 +2747,6 @@ layout_mode = 2
 
 [node name="开源" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "开源"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer3"]
@@ -2857,7 +2809,6 @@ layout_mode = 2
 
 [node name="修改" type="Label" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "修改"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/3D/VBoxContainer/XR/VBoxContainer/HBoxContainer2"]

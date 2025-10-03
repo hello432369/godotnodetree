@@ -206,9 +206,32 @@ func connect_foldable_containers():
 			# 默认状态保存到字典
 			fold_states[container_id] = container.folded
 		
-		# 连接信号，如果尚未连接
-		if not container.is_connected("folded_changed", _on_foldable_container_folded):
-			container.folded_changed.connect(_on_foldable_container_folded.bind(container))
+		# 使用属性变化通知来监听折叠状态变化
+		if not container.is_connected("property_list_changed", _on_container_property_changed):
+			container.property_list_changed.connect(_on_container_property_changed.bind(container))
+	
+	# 清理无效的折叠状态记录
+	_cleanup_invalid_fold_states()
+
+# 清理无效的折叠状态记录
+func _cleanup_invalid_fold_states():
+	var valid_container_ids = []
+	
+	# 获取所有当前存在的FoldableContainer的ID
+	var foldable_containers = _find_all_foldable_containers(self)
+	for container in foldable_containers:
+		valid_container_ids.append(_get_container_unique_id(container))
+	
+	# 找出所有无效的容器ID（存在于fold_states中但不在当前场景中）
+	var invalid_container_ids = []
+	for container_id in fold_states:
+		if not container_id in valid_container_ids:
+			invalid_container_ids.append(container_id)
+	
+	# 从fold_states中移除无效的容器ID
+	for container_id in invalid_container_ids:
+		fold_states.erase(container_id)
+		print("移除无效的折叠状态记录: ", container_id)
 
 # 查找所有FoldableContainer
 func _find_all_foldable_containers(node: Node) -> Array:
@@ -228,6 +251,24 @@ func _find_all_foldable_containers(node: Node) -> Array:
 func _get_container_unique_id(container: FoldableContainer) -> String:
 	# 使用容器路径作为唯一标识符
 	return container.get_path()
+
+# FoldableContainer属性变化时的回调
+func _on_container_property_changed(container: FoldableContainer):
+	# 检查是否是folded属性发生了变化
+	var container_id = _get_container_unique_id(container)
+	var current_folded_state = container.folded
+	
+	# 如果状态发生了变化
+	if container_id in fold_states and fold_states[container_id] != current_folded_state:
+		fold_states[container_id] = current_folded_state
+		# 保存折叠状态
+		save_fold_states()
+		# 调用原来的回调函数
+		_on_foldable_container_folded(current_folded_state, container)
+	elif not (container_id in fold_states):
+		# 如果是新容器，保存初始状态
+		fold_states[container_id] = current_folded_state
+		save_fold_states()
 
 # FoldableContainer折叠状态变化时的回调
 func _on_foldable_container_folded(folded: bool, container: FoldableContainer):

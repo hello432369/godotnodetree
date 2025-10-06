@@ -287,7 +287,7 @@ func _连接菜单交互(菜单: Node):
 
 func _连接属性编辑器交互(属性编辑器: EditorProperty):
 	# 属性值被修改
-	_安全连接(属性编辑器, "property_changed", _播放按钮音效_带参)
+	_安全连接(属性编辑器, "property_changed", _播放按钮音效_多参)
 	# 属性本身是可折叠的（例如资源）
 	_安全连接(属性编辑器, "object_id_selected", _播放按钮音效_多参)
 

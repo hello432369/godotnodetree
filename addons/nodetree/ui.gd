@@ -5,14 +5,22 @@ extends Control
 @export var button_theme: Theme
 
 var ed: EditorPlugin = null
+var editor_interface = null
 
 # 字体大小设置
 var font_size: int = 8
 var sound_enabled: bool = true  # 添加音效开关变量
 var fold_states: Dictionary = {}  # 保存折叠状态的字典
 const FONT_SIZE_CONFIG_PATH = "res://addons/nodetree/nodetree_font_size.cfg"
+const RECENT_NODES_CONFIG_PATH = "res://addons/nodetree/recent_nodes.cfg"
+var recent_nodes: Array = []  # 存储最近使用的节点类型
+const MAX_RECENT_NODES = 10  # 最多显示9个最近使用的节点
 
 func _ready():
+	# 初始化编辑器接口
+	if is_instance_valid(ed):
+		editor_interface = ed.get_editor_interface()
+	
 	# 应用按钮样式
 	apply_button_styles()
 	
@@ -28,6 +36,12 @@ func _ready():
 	# 加载保存的折叠状态
 	load_fold_states()
 	
+	# 加载最近使用的节点
+	load_recent_nodes()
+	
+	# 更新最近使用节点的UI
+	update_recent_nodes_ui()
+	
 	# 应用字体大小到所有按钮
 	apply_font_size_to_buttons()
 	
@@ -41,6 +55,12 @@ func _ready():
 		font_slider.value = font_size
 		if not font_slider.is_connected("value_changed", _on_font_size_changed):
 			font_slider.value_changed.connect(_on_font_size_changed)
+	
+	# 连接搜索框信号
+	var search_line_edit = find_child("SearchLineEdit", true, false)
+	if search_line_edit and search_line_edit is LineEdit:
+		if not search_line_edit.is_connected("text_changed", _on_search_text_changed):
+			search_line_edit.text_changed.connect(_on_search_text_changed)
 	
 	# 连接所有FoldableContainer的折叠信号
 	connect_foldable_containers()
@@ -155,6 +175,9 @@ func apply_font_size_to_buttons():
 			button.add_theme_font_size_override("font_size", font_size)
 			# 强制更新按钮的样式
 			button.queue_redraw()
+	
+	# 更新最近使用节点的字体大小
+	update_recent_nodes_ui()
 
 # 字体大小滑块值变化时的回调
 func _on_font_size_changed(value: float):
@@ -449,6 +472,11 @@ func create_node_with_undo(node_class: String, node_name: String = "") -> void:
 	
 	# 提交操作
 	undo_redo.commit_action(true)
+	
+	# 将节点添加到最近使用节点列表
+	_add_to_recent_nodes(node_class)
+
+
 
 # endregion
 
@@ -965,4 +993,187 @@ func _on_xr_body_modifier_3d_pressed() -> void:
 	create_node_with_undo("XRBodyModifier3D")
 func _on_xr_hand_modifier_3d_pressed() -> void:
 	create_node_with_undo("XRHandModifier3D")
+# endregion
+
+# region 最近使用节点管理
+# 添加节点到最近使用列表
+func _add_to_recent_nodes(node_class: String) -> void:
+	# 如果节点已经在列表中，先移除它
+	var index = recent_nodes.find(node_class)
+	if index != -1:
+		recent_nodes.remove_at(index)
+	
+	# 将节点添加到列表开头
+	recent_nodes.insert(0, node_class)
+	
+	# 确保列表不超过最大长度
+	if recent_nodes.size() > MAX_RECENT_NODES:
+		recent_nodes.resize(MAX_RECENT_NODES)
+	
+	# 保存最近使用节点列表
+	save_recent_nodes()
+	
+	# 更新UI
+	update_recent_nodes_ui()
+
+# 保存最近使用节点列表
+func save_recent_nodes() -> void:
+	var config = ConfigFile.new()
+	for i in range(recent_nodes.size()):
+		config.set_value("recent_nodes", "node_" + str(i), recent_nodes[i])
+	var err = config.save(RECENT_NODES_CONFIG_PATH)
+	if err != OK:
+		print("保存最近使用节点失败: ", err)
+
+# 加载最近使用节点列表
+func load_recent_nodes() -> void:
+	recent_nodes.clear()
+	var config = ConfigFile.new()
+	if config.load(RECENT_NODES_CONFIG_PATH) == OK:
+		var keys = config.get_section_keys("recent_nodes")
+		for key in keys:
+			var node_class = config.get_value("recent_nodes", key, "")
+			if node_class != "" and not recent_nodes.has(node_class):
+				recent_nodes.append(node_class)
+
+# 更新最近使用节点的UI
+func update_recent_nodes_ui() -> void:
+	var recent_nodes_container = find_child("RecentNodes", true, false)
+	if not recent_nodes_container:
+		print("未找到RecentNodes容器")
+		return
+	
+	# 清除现有按钮
+	for child in recent_nodes_container.get_children():
+		child.queue_free()
+	
+	# 为每个最近使用的节点创建按钮
+	for node_class in recent_nodes:
+		var button = Button.new()
+		button.text = node_class
+		button.name = "Recent_" + node_class
+		button.theme = button_theme
+		button.add_theme_font_size_override("font_size", font_size)
+		
+		# 设置按钮图标
+		var icon = get_theme_icon(node_class, "EditorIcons")
+		if icon:
+			button.icon = icon
+		
+		# 连接按钮点击信号
+		button.pressed.connect(_on_recent_node_button_pressed.bind(node_class))
+		
+		# 添加到容器
+		recent_nodes_container.add_child(button)
+
+# 最近使用节点按钮点击事件
+func _on_recent_node_button_pressed(node_class: String) -> void:
+	create_node_with_undo(node_class)
+# endregion
+
+# region 搜索功能
+# 搜索文本变化时的回调
+func _on_search_text_changed(new_text: String) -> void:
+	perform_node_search(new_text)
+
+# 执行节点搜索
+func perform_node_search(search_text: String) -> void:
+	# 如果搜索文本为空，显示所有节点
+	if search_text.is_empty():
+		show_all_nodes()
+		return
+	
+	# 隐藏所有节点
+	hide_all_nodes()
+	
+	# 搜索并显示匹配的节点
+	var search_lower = search_text.to_lower()
+	var tab_container = find_child("TabContainer", true, false)
+	
+	if tab_container:
+		# 遍历所有标签页
+		for i in range(tab_container.get_tab_count()):
+			var tab = tab_container.get_tab_control(i)
+			var tab_has_matches = false
+			
+			# 查找标签页中的所有按钮
+			var buttons = _find_all_buttons(tab)
+			for button in buttons:
+				# 检查按钮名称或文本是否包含搜索文本
+				var button_text = button.text.to_lower()
+				var button_name = button.name.to_lower()
+				
+				if search_lower in button_text or search_lower in button_name:
+					# 显示按钮及其父容器
+					button.visible = true
+					tab_has_matches = true
+					show_parents(button)
+				else:
+					# 隐藏不匹配的按钮
+					button.visible = false
+			
+			# 如果标签页有匹配项，显示该标签页
+			if tab_has_matches:
+				tab.visible = true
+				# 如果这是第一个有匹配项的标签页，切换到它
+				if not tab_container.current_tab == i:
+					tab_container.current_tab = i
+					break  # 找到第一个匹配的标签页后就停止
+			else:
+				# 隐藏没有匹配项的标签页
+				tab.visible = false
+
+# 显示所有节点
+func show_all_nodes() -> void:
+	var tab_container = find_child("TabContainer", true, false)
+	if tab_container:
+		# 显示所有标签页
+		for i in range(tab_container.get_tab_count()):
+			var tab = tab_container.get_tab_control(i)
+			tab.visible = true
+		
+		# 显示所有按钮
+		var buttons = _find_all_buttons(tab_container)
+		for button in buttons:
+			button.visible = true
+		
+		# 显示所有容器
+		var containers = _find_all_containers(tab_container)
+		for container in containers:
+			container.visible = true
+
+# 隐藏所有节点
+func hide_all_nodes() -> void:
+	var tab_container = find_child("TabContainer", true, false)
+	if tab_container:
+		# 隐藏所有标签页
+		for i in range(tab_container.get_tab_count()):
+			var tab = tab_container.get_tab_control(i)
+			tab.visible = false
+		
+		# 隐藏所有按钮
+		var buttons = _find_all_buttons(tab_container)
+		for button in buttons:
+			button.visible = false
+
+# 显示按钮的父容器
+func show_parents(button: Button) -> void:
+	var parent = button.get_parent()
+	while parent and parent != self:
+		parent.visible = true
+		parent = parent.get_parent()
+
+# 查找所有容器
+func _find_all_containers(node: Node) -> Array:
+	var containers = []
+	
+	# 如果是容器，添加到数组
+	if node is Container:
+		containers.append(node)
+	
+	# 递归查找子节点
+	for child in node.get_children():
+		containers.append_array(_find_all_containers(child))
+	
+	return containers
 # endregion
